@@ -36,6 +36,9 @@ function showPage(): void
 
 
 function updateNote(){
+    
+    echo "<pre>";
     var_dump($_POST);
-    die('update note');
+    echo "</pre>";
+    die;
 }

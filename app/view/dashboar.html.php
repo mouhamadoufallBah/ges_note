@@ -818,7 +818,7 @@ $moyen = $moyen ?? 0;
                                             </div>
                                         </div>
                                     </td>
-                                    <td> <input type="hidden" name="eleve[<?= $eleve['evaluation_id'] ?>][evaluation_id]"> <input class="grade-input" name="eleve[<?= $eleve['evaluation_id'] ?>][devoir_1]" type="number" min="0" max="20" step="0.5" value="<?= $eleve["devoir_1"] ?>"></td>
+                                    <td> <input type="hidden" name="eleve[<?= $eleve['evaluation_id'] ?>][evaluation_id]" value="<?= $eleve['evaluation_id'] ?>"> <input class="grade-input" name="eleve[<?= $eleve['evaluation_id'] ?>][devoir_1]" type="number" min="0" max="20" step="0.5" value="<?= $eleve["devoir_1"] ?>"></td>
                                     <td><input class="grade-input" name="eleve[<?= $eleve['evaluation_id'] ?>][devoir_2]" type="number" min="0" max="20" step="0.5" value="<?= $eleve["devoir_2"] ?>"></td>
                                     <td><input class="grade-input comp" name="eleve[<?= $eleve['evaluation_id'] ?>][composition]" type="number" min="0" max="20" step="0.5" value="<?= $eleve["composition"] ?>"></td>
                                     <td><span class="moyenne-val"><?= $eleve["moyenne_eleve"] ?></span></td>
