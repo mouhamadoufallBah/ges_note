@@ -786,7 +786,6 @@ $moyen = $moyen ?? 0;
 
         <div class="table-card">
             <form id="monFormulaire" method="POST" action="http://localhost:8000/updateNote">
-
                 <table>
                     <thead>
                         <tr>
