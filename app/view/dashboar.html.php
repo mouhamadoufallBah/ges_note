@@ -785,51 +785,53 @@ $moyen = $moyen ?? 0;
         </form>
 
         <div class="table-card">
-            <table>
-                <thead>
-                    <tr>
-                        <th class="num">Élève</th>
-                        <th class="num">Devoir 1 /20</th>
-                        <th class="num">Devoir 2 /20</th>
-                        <th class="num">Composition /20</th>
-                        <th class="num">Moyenne</th>
-                        <th class="num">Appréciation</th>
-                    </tr>
-                </thead>
-                <tbody id="tbody">
-                    <!-- lignes générées par JS -->
-                </tbody>
-                <tfoot>
-                    <?php if (empty($eleves)): ?>
+            <form id="monFormulaire" method="POST" action="http://localhost:8000/updateNote">
+
+                <table>
+                    <thead>
                         <tr>
-                            <td colspan="6">Navigation clavier disponible · valeurs limitées de 0 à 20</td>
+                            <th class="num">Élève</th>
+                            <th class="num">Devoir 1 /20</th>
+                            <th class="num">Devoir 2 /20</th>
+                            <th class="num">Composition /20</th>
+                            <th class="num">Moyenne</th>
+                            <th class="num">Appréciation</th>
                         </tr>
-                    <?php else: ?>
-                        <?php foreach ($eleves as $eleve): ?>
+                    </thead>
+                    <tbody id="tbody">
+                        <!-- lignes générées par JS -->
+                    </tbody>
+                    <tfoot>
+                        <?php if (empty($eleves)): ?>
                             <tr>
-                                <td>
-                                    <div class="eleve-cell">
-                                        <div class="idx" style="display:inline-block;width:18px;"><?= $eleve["eleve_id"] ?></div>
-                                        <div class="avatar">E</div>
-                                        <div>
-                                            <div class="eleve-name"><?= $eleve["nom_complet"] ?></div>
-                                            <div class="eleve-id"><?= $eleve["matricule"] ?></div>
+                                <td colspan="6">Navigation clavier disponible · valeurs limitées de 0 à 20</td>
+                            </tr>
+                        <?php else: ?>
+                            <?php foreach ($eleves as $eleve): ?>
+                                <tr>
+                                    <td>
+                                        <div class="eleve-cell">
+                                            <div class="idx" style="display:inline-block;width:18px;"><?= $eleve["eleve_id"] ?></div>
+                                            <div class="avatar">E</div>
+                                            <div>
+                                                <div class="eleve-name"><?= $eleve["nom_complet"] ?></div>
+                                                <div class="eleve-id"><?= $eleve["matricule"] ?></div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </td>
-                                <form id="monFormulaire" method="post" action="http://localhost:8000/updateNote">
-                                    <td> <input type="hidden" name="eleve[<?= $eleve['id'] ?>][id]"> <input class="grade-input" name="eleve[<?= $eleve['id'] ?>][devoir_1]" type="number" min="0" max="20" step="0.5" value="<?= $eleve["devoir_1"] ?>"></td>
-                                    <td><input class="grade-input" name="eleve[<?= $eleve['id'] ?>][devoir_2]" type="number" min="0" max="20" step="0.5" value="<?= $eleve["devoir_2"] ?>"></td>
-                                    <td><input class="grade-input comp" name="eleve[<?= $eleve['id'] ?>][composition]" type="number" min="0" max="20" step="0.5" value="<?= $eleve["composition"] ?>"></td>
+                                    </td>
+                                    <td> <input type="hidden" name="eleve[<?= $eleve['evaluation_id'] ?>][evaluation_id]"> <input class="grade-input" name="eleve[<?= $eleve['evaluation_id'] ?>][devoir_1]" type="number" min="0" max="20" step="0.5" value="<?= $eleve["devoir_1"] ?>"></td>
+                                    <td><input class="grade-input" name="eleve[<?= $eleve['evaluation_id'] ?>][devoir_2]" type="number" min="0" max="20" step="0.5" value="<?= $eleve["devoir_2"] ?>"></td>
+                                    <td><input class="grade-input comp" name="eleve[<?= $eleve['evaluation_id'] ?>][composition]" type="number" min="0" max="20" step="0.5" value="<?= $eleve["composition"] ?>"></td>
                                     <td><span class="moyenne-val"><?= $eleve["moyenne_eleve"] ?></span></td>
                                     <td><span class="pill" data-app="${i}"><span class="pdot"></span><span class="app-label"></span><?= $eleve["appreciation"] ?></span></td>
-                                </form>
-                            </tr>
-                        <?php endforeach ?>
-                    <?php endif ?>
 
-                </tfoot>
-            </table>
+                                </tr>
+                            <?php endforeach ?>
+                        <?php endif ?>
+
+                    </tfoot>
+                </table>
+            </form>
         </div>
 
     </div>
@@ -840,7 +842,7 @@ $moyen = $moyen ?? 0;
         </svg>
         <span id="toastText">Enregistré</span>
     </div>
-<!-- 
+    <!-- 
     <script>
         (function() {
             const students = [{
